@@ -171,6 +171,11 @@ public class PasswordProtectPlayerListener implements Listener {
             password = utils.hash(password);
             if (password.equals(utils.getPassword())) {
                 loginPlayer(player, playerUUID);
+
+                // Add IP to list
+                String ip = player.getAddress().getAddress().toString().replace("/", "");
+                utils.addIPToList(ip);
+                
                 event.setCancelled(true);
                 return;
             }

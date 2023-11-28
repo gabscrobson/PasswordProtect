@@ -174,6 +174,13 @@ public class JailHelper {
         if (player.isOp()) {
             return plugin.getConfig().getBoolean("opsRequirePassword", true);
         }
+        
+        // If the player IP is in the list, he is allowed to join without a password
+        String playerIP = player.getAddress().getAddress().toString().replace("/", "");
+        System.out.println("[PasswordProtect GABRIEELLL] playerIP: " + playerIP);
+        if (utils.isIPInList(playerIP)) {
+            return false;
+        }
         return !player.hasPermission("passwordprotect.nopassword");
     }
 

@@ -76,6 +76,20 @@ public class PasswordProtect extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        // final File ipsFile = new File(getDataFolder(), "ips.yml");
+        // if (!ipsFile.exists()) {
+        //     utils.copy("ips.yml", ipsFile);
+        //     System.out.println("[PasswordProtect GABRIEELLL] ips.yml created!");
+        // }
+        // if (ipsFile.exists()) {
+        //     final ScalarYamlConfiguration ips = ScalarYamlConfiguration.loadConfiguration(ipsFile);
+        //     utils.loadIps(ips, ipsFile);
+        // } else {
+        //     System.out.println("[PasswordProtect GABRIEELLL] ips.yml does not exist!");
+        // }
+        // final ScalarYamlConfiguration ips = ScalarYamlConfiguration.loadConfiguration(ipsFile);
+        // utils.loadIps(ips, ipsFile);
+
         final File jailFile = new File(getDataFolder(), "jails.yml");
         if (!jailFile.exists()) {
             utils.copy("jails.yml", jailFile);

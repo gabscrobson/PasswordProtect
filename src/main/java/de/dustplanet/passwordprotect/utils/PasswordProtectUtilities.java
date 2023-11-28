@@ -11,6 +11,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -20,6 +22,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 
@@ -52,6 +55,7 @@ public class PasswordProtectUtilities {
     @Setter
     @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     private String hashAlgorithm = "SHA-512";
+    private HashSet<String> ipsSet = new HashSet<String>();
 
     @SuppressWarnings("checkstyle:MissingJavadocMethod")
     @SuppressFBWarnings({ "CD_CIRCULAR_DEPENDENCY", "FCCD_FIND_CLASS_CIRCULAR_DEPENDENCY" })
@@ -183,6 +187,35 @@ public class PasswordProtectUtilities {
         }
     }
 
+    // /**
+    //  * Loads the ips YML and writes the default to a file.
+    //  *
+    //  * @param ips the YML ips object
+    //  * @param ipsFile the file to save the defaults to
+    //  */
+    // public void loadIps(final FileConfiguration ips, final File ipsFile) {
+    //     this.ipsFile = ipsFile;
+    // }
+
+    // /**
+    //  * Checks if the IP is on the yml file.
+    //  */
+    // public boolean isIPInList(final String ip) {
+    //     System.out.println("[GABRILE GABRIEL] IP: " + ip);
+    //     FileConfiguration ipsConfig = YamlConfiguration.loadConfiguration(ipsFile);
+    //     List<String> ipList = ipsConfig.getStringList("ips");
+    //     return ipList.contains(ip);
+    // }
+
+    public boolean isIPInList(final String ip) {
+        System.out.println("[GABRILE GABRIEL] IP: " + ip);
+        return ipsSet.contains(ip);
+    }
+
+    public void addIPToList(final String ip) {
+        ipsSet.add(ip);
+    }
+    
     /**
      * Registers the commands.
      */
