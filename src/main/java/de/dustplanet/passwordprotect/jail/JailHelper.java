@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -48,6 +49,8 @@ public class JailHelper {
     private Map<UUID, Integer> jailedPlayers = new HashMap<>();
     @Getter
     private final Map<UUID, Location> playerLocations = new HashMap<>();
+    @Getter
+    private HashSet<String> ipsSet = new HashSet<String>();
 
     @SuppressWarnings("checkstyle:MissingJavadocMethod")
     public JailHelper(final PasswordProtect instance, final File jailFile, final FileConfiguration jails) {
@@ -178,7 +181,7 @@ public class JailHelper {
         // If the player IP is in the list, he is allowed to join without a password
         String playerIP = player.getAddress().getAddress().toString().replace("/", "");
         System.out.println("[PasswordProtect GABRIEELLL] playerIP: " + playerIP);
-        if (utils.isIPInList(playerIP)) {
+        if (isIPInList(playerIP)) {
             return false;
         }
         return !player.hasPermission("passwordprotect.nopassword");
@@ -216,4 +219,17 @@ public class JailHelper {
         }
     }
 
+    /*
+     * Checks if the IP is in the list of IPs that have already logged in.
+     */
+    public boolean isIPInList(final String ip) {
+        return ipsSet.contains(ip);
+    }
+
+    /*
+     * Adds the IP to the list of IPs that have already logged in.
+     */
+    public void addIPToList(final String ip) {
+        ipsSet.add(ip);
+    }
 }

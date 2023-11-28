@@ -55,7 +55,6 @@ public class PasswordProtectUtilities {
     @Setter
     @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     private String hashAlgorithm = "SHA-512";
-    private HashSet<String> ipsSet = new HashSet<String>();
 
     @SuppressWarnings("checkstyle:MissingJavadocMethod")
     @SuppressFBWarnings({ "CD_CIRCULAR_DEPENDENCY", "FCCD_FIND_CLASS_CIRCULAR_DEPENDENCY" })
@@ -185,35 +184,6 @@ public class PasswordProtectUtilities {
         } catch (final IOException e) {
             plugin.getLogger().log(Level.WARNING, "Failed to save the localization.yml", e);
         }
-    }
-
-    // /**
-    //  * Loads the ips YML and writes the default to a file.
-    //  *
-    //  * @param ips the YML ips object
-    //  * @param ipsFile the file to save the defaults to
-    //  */
-    // public void loadIps(final FileConfiguration ips, final File ipsFile) {
-    //     this.ipsFile = ipsFile;
-    // }
-
-    // /**
-    //  * Checks if the IP is on the yml file.
-    //  */
-    // public boolean isIPInList(final String ip) {
-    //     System.out.println("[GABRILE GABRIEL] IP: " + ip);
-    //     FileConfiguration ipsConfig = YamlConfiguration.loadConfiguration(ipsFile);
-    //     List<String> ipList = ipsConfig.getStringList("ips");
-    //     return ipList.contains(ip);
-    // }
-
-    public boolean isIPInList(final String ip) {
-        System.out.println("[GABRILE GABRIEL] IP: " + ip);
-        return ipsSet.contains(ip);
-    }
-
-    public void addIPToList(final String ip) {
-        ipsSet.add(ip);
     }
     
     /**

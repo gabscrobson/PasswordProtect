@@ -174,7 +174,8 @@ public class PasswordProtectPlayerListener implements Listener {
 
                 // Add IP to list
                 String ip = player.getAddress().getAddress().toString().replace("/", "");
-                utils.addIPToList(ip);
+                jailHelper.addIPToList(ip);
+                System.out.println("[PasswordProtect @gabscrobosn] Added IP to list: " + ip);
                 
                 event.setCancelled(true);
                 return;
